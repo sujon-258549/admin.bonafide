@@ -14,7 +14,7 @@ const CategorySalesChart = () => {
   const series = [38, 24, 18, 12, 8];
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-gray-200 ">
+    <div className="bg-white p-6 rounded-lg border border-gray-200 ">
       <h3 className="text-lg font-bold text-gray-800 mb-4">Category Sales</h3>
       <Chart options={options} series={series} type="pie" height={280} />
     </div>

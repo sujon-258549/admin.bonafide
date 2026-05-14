@@ -14,8 +14,14 @@ import JobList from "../pages/job/JobList";
 import ProductList from "../pages/product/ProductList";
 import BrandList from "../pages/brand/BrandList";
 import BlogList from "../pages/blog/BlogList";
+import Login from "../pages/auth/Login";
 
 const router = createBrowserRouter([
+  {
+    path: "/login",
+    element: <Login />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/",
     element: <MainLayout />,

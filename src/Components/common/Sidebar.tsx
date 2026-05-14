@@ -10,6 +10,8 @@ import {
   faBars,
   faTimes,
   faChevronDown,
+  faUsers,
+  faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router";

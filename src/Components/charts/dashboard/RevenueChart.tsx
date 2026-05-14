@@ -45,7 +45,7 @@ const RevenueChart = (_props: { externalFilter?: FilterType }) => {
   ];
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-gray-200  h-full">
+    <div className="bg-white p-6 rounded-lg border border-gray-200  h-full">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="text-lg font-bold text-gray-800">Revenue Trend</h3>

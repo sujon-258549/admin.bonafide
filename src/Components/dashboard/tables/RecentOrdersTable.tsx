@@ -126,7 +126,7 @@ const RecentOrdersTable: React.FC<RecentOrdersTableProps> = ({
   ];
 
   return (
-    <div className="bg-white p-6 rounded-2xl border border-gray-200">
+    <div className="bg-white p-6 rounded-lg border border-gray-200">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-bold text-gray-900">Recent Orders</h3>
         <Button

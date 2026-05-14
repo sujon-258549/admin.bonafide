@@ -52,7 +52,7 @@ const rankBadge = (rank: number) => {
 };
 
 const TopProductsCard = () => (
-  <div className="bg-white rounded-2xl border border-gray-200 p-6 h-full flex flex-col">
+  <div className="bg-white rounded-lg border border-gray-200 p-6 h-full flex flex-col">
     <div className="flex items-start justify-between mb-5">
       <div>
         <h3 className="text-base font-bold text-gray-900">Top Selling</h3>
