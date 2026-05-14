@@ -1,6 +1,7 @@
-import { Table } from "antd";
+import { Table, Pagination } from "antd";
 import { useEffect, useState, useRef } from "react";
 import "./AntTable.css";
+import MobileCardList from "./MobileCardList";
 
 export default function DataTable(props: any) {
   // const { isExpanded } = useSidebar();
@@ -160,51 +161,78 @@ export default function DataTable(props: any) {
     };
   };
 
+  const resolvedRowKey = rowKey || "_id";
+
   return (
     <div ref={tableWrapperRef} className="w-full">
-      <Table
-        {...rest}
-        onRow={handleOnRow}
-        loading={loading}
-        className="border border-gray-200 rounded-lg overflow-hidden shadow-none"
-        rowKey={rowKey ? rowKey : "_id"}
-        rowSelection={selectRow ? rowSelection : undefined}
-        dataSource={data || []}
-        columns={columns}
-        tableLayout="fixed"
-        scroll={{ x: true }}
-        expandable={expandable}
-        pagination={
-          isPaginate
-            ? {
-                pageSize: limit || 20,
-                total: total || data?.count || data?.length || 0,
-                current: currentPage,
-                // onChange: handlePageChange,
-                onChange: (page) => {
-                  // handlePageChange(page);
-                  setCurrentPage(page);
-                },
-                showSizeChanger: showSizeChanger,
-                pageSizeOptions: [
-                  "10",
-                  "25",
-                  "50",
-                  "100",
-                  "200",
-                  "500",
-                  "1000",
-                ],
-                onShowSizeChange: (_current, newSize) => {
-                  setLimit(newSize);
-                  setCurrentPage(1);
-                },
-                showQuickJumper: true,
-              }
-            : false
-        }
-        showHeader={showHeader}
-      />
+      {/* Mobile: card layout */}
+      <div className="md:hidden">
+        <MobileCardList
+          data={data || []}
+          columns={columns}
+          rowKey={resolvedRowKey}
+          loading={loading}
+          onRowClick={rest.onRow ? handleOnRow : undefined}
+        />
+        {isPaginate && (data?.length || total) ? (
+          <div className="flex justify-center mt-4">
+            <Pagination
+              size="small"
+              pageSize={limit || 20}
+              total={total || data?.count || data?.length || 0}
+              current={currentPage}
+              onChange={(page) => setCurrentPage(page)}
+              showSizeChanger={false}
+              simple
+            />
+          </div>
+        ) : null}
+      </div>
+
+      {/* Desktop / tablet: table layout */}
+      <div className="hidden md:block">
+        <Table
+          {...rest}
+          onRow={handleOnRow}
+          loading={loading}
+          className="border border-gray-200 rounded-lg overflow-hidden shadow-none"
+          rowKey={resolvedRowKey}
+          rowSelection={selectRow ? rowSelection : undefined}
+          dataSource={data || []}
+          columns={columns}
+          tableLayout="fixed"
+          scroll={{ x: true }}
+          expandable={expandable}
+          pagination={
+            isPaginate
+              ? {
+                  pageSize: limit || 20,
+                  total: total || data?.count || data?.length || 0,
+                  current: currentPage,
+                  onChange: (page) => {
+                    setCurrentPage(page);
+                  },
+                  showSizeChanger: showSizeChanger,
+                  pageSizeOptions: [
+                    "10",
+                    "25",
+                    "50",
+                    "100",
+                    "200",
+                    "500",
+                    "1000",
+                  ],
+                  onShowSizeChange: (_current, newSize) => {
+                    setLimit(newSize);
+                    setCurrentPage(1);
+                  },
+                  showQuickJumper: true,
+                }
+              : false
+          }
+          showHeader={showHeader}
+        />
+      </div>
     </div>
   );
 }

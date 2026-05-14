@@ -1,21 +1,24 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import { Eye, EyeOff, Mail, Lock, ShieldCheck, Sparkles, TrendingUp } from "lucide-react";
 
 import Input from "../../Components/ui/Input";
 import Button from "../../Components/ui/Button";
 import Checkbox from "../../Components/ui/Checkbox";
+import { useLoginMutation } from "../../redux/features/auth/authApi";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [login, { isLoading }] = useLoginMutation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(true);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
 
@@ -24,12 +27,22 @@ const Login = () => {
       return;
     }
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/");
-    }, 800);
+    try {
+      await login({ email, password }).unwrap();
+      const from =
+        (location.state as { from?: { pathname: string } } | null)?.from
+          ?.pathname ?? "/";
+      navigate(from, { replace: true });
+    } catch (err: any) {
+      setError(
+        err?.data?.message ||
+          err?.error ||
+          "Login failed. Please check your credentials.",
+      );
+    }
   };
+
+  const loading = isLoading;
 
   return (
     <div className="min-h-screen bg-gray-50 flex">

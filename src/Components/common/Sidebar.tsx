@@ -13,7 +13,9 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { NavLink, Link, useLocation } from "react-router";
+import { NavLink, Link, useLocation, useNavigate } from "react-router";
+import { useAppDispatch } from "../../redux/hooks";
+import { logout } from "../../redux/features/auth/authSlice";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -22,7 +24,14 @@ interface SidebarProps {
 
 const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [expanded, setExpanded] = useState<string | null>("Dashboard");
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/login", { replace: true });
+  };
 
   const menuItems = [
     { name: "Dashboard", icon: faTableColumns, path: "/" },
@@ -68,7 +77,6 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
       path: "/employee",
       submenu: [
         { name: "All Employees", path: "/employee/all" },
-        { name: "Departments", path: "/users/departments" },
         { name: "Designations & Permissions", path: "/users/designations" },
       ],
     },
@@ -106,9 +114,11 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed left-0 top-0 h-screen bg-white text-gray-600 transition-all duration-300 ease-in-out z-50 flex flex-col ${
-          isOpen ? "w-64" : "w-20"
-        } overflow-visible border-r border-gray-200`}
+        className={`fixed left-0 top-0 h-screen bg-white text-gray-600 transition-all duration-300 ease-in-out z-50 flex flex-col overflow-visible border-r border-gray-200 ${
+          isOpen
+            ? "w-64 translate-x-0"
+            : "w-20 -translate-x-full lg:translate-x-0"
+        }`}
       >
         {/* Logo Section */}
         <div
@@ -256,7 +266,10 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
 
         {/* Footer Section */}
         <div className="p-4 border-t border-gray-200">
-          <button className="w-full flex items-center transition-all duration-200 group relative hover:bg-rose-50 text-rose-500 rounded-sm px-4 py-3">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center transition-all duration-200 group relative hover:bg-rose-50 text-rose-500 rounded-sm px-4 py-3"
+          >
             <div className="flex items-center">
               <div className="w-5 flex justify-center transition-transform duration-300 group-hover:scale-110 shrink-0">
                 <FontAwesomeIcon

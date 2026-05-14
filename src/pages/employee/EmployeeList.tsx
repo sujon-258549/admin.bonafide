@@ -198,40 +198,19 @@ const EmployeeList = () => {
       dataIndex: "designation",
       key: "designation",
       render: (d: string) => (
-        <span
-          className="text-xs font-semibold text-white whitespace-nowrap px-3 py-1 rounded-sm"
-          style={{ backgroundColor: "#052e16" }}
-        >
-          {d}
-        </span>
-      ),
-    },
-    {
-      title: "Department",
-      dataIndex: "department",
-      key: "department",
-      render: (dept: string) => (
         <Tag
           style={{
-            backgroundColor: "#f0fdf4",
-            color: "#052e16",
-            border: "1px solid #dcfce7",
+            backgroundColor:
+              "color-mix(in srgb, var(--primary) 10%, transparent)",
+            color: "var(--primary)",
+            border:
+              "1px solid color-mix(in srgb, var(--primary) 25%, transparent)",
             borderRadius: "4px",
           }}
-          className=" px-3 font-medium"
+          className="px-3 font-medium"
         >
-          {dept}
+          {d}
         </Tag>
-      ),
-    },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-      render: (role: string) => (
-        <span className="text-sm text-gray-800 font-medium whitespace-nowrap">
-          {role}
-        </span>
       ),
     },
     {

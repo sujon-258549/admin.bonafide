@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PageHeader from "../../Components/common/PageHeader";
-import { Tooltip, Popconfirm } from "antd";
+import { Tooltip, Popconfirm, Tag } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -174,11 +174,23 @@ const RolesPermissions = () => {
       ),
     },
     {
-      title: "ROLE",
+      title: "DESIGNATION",
       dataIndex: "role",
       key: "role",
       render: (role: string) => (
-        <span className="text-sm font-medium text-gray-600">{role}</span>
+        <Tag
+          style={{
+            backgroundColor:
+              "color-mix(in srgb, var(--primary) 10%, transparent)",
+            color: "var(--primary)",
+            border:
+              "1px solid color-mix(in srgb, var(--primary) 25%, transparent)",
+            borderRadius: "4px",
+          }}
+          className="px-3 font-medium"
+        >
+          {role}
+        </Tag>
       ),
     },
     {

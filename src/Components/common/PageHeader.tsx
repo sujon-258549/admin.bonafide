@@ -21,10 +21,10 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   extra,
 }) => {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-      <div>
+    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4">
+      <div className="min-w-0">
         {breadcrumb && (
-          <nav className="flex items-center gap-2 text-[12px] font-medium text-gray-500 mb-1 ">
+          <nav className="flex items-center flex-wrap gap-2 text-[12px] font-medium text-gray-500 mb-1">
             {breadcrumb.map((item, index) => (
               <React.Fragment key={index}>
                 {item.path ? (
@@ -44,12 +44,18 @@ const PageHeader: React.FC<PageHeaderProps> = ({
             ))}
           </nav>
         )}
-        <h2 className="text-2xl font-semibold text-gray-900 tracking-tight text-nowrap">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 tracking-tight">
           {title}
         </h2>
-        {subTitle && <p className="text-sm text-gray-500 mt-0.5">{subTitle}</p>}
+        {subTitle && (
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">{subTitle}</p>
+        )}
       </div>
-      {extra && <div className="flex items-center gap-3 pt-1">{extra}</div>}
+      {extra && (
+        <div className="flex items-center flex-wrap gap-2 sm:gap-3 sm:pt-1">
+          {extra}
+        </div>
+      )}
     </div>
   );
 };
