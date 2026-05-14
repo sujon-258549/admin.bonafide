@@ -11,7 +11,6 @@ import {
   faTimes,
   faChevronDown,
   faUsers,
-  faUserShield,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router";
@@ -61,6 +60,17 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
       icon: faNewspaper,
       path: "/blogs",
       submenu: [{ name: "All Blogs", path: "/blogs/list" }],
+    },
+
+    {
+      name: "Employee Management",
+      icon: faUsers,
+      path: "/employee",
+      submenu: [
+        { name: "All Employees", path: "/employee/all" },
+        { name: "Departments", path: "/users/departments" },
+        { name: "Designations & Permissions", path: "/users/designations" },
+      ],
     },
   ];
 
@@ -118,7 +128,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto overflow-x-hidden custom-scrollbar">
+        <nav className="flex-1 py-4 px-3 space-y-1 overflow-y-auto overflow-x-hidden no-scrollbar">
           {menuItems.map((item) => {
             const hasSubmenu = !!item.submenu;
             const isExpanded = expanded === item.name;
@@ -136,7 +146,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                         ? "bg-[#e6f4ea] text-[#052e16]"
                         : "hover:bg-gray-50 text-gray-500"
                     } rounded-sm
-                    ${isExpanded || isAnySubActive ? "border-l-4 border-l-primary" : ""} px-4 py-3`}
+                    ${isExpanded || isAnySubActive ? "border-l-4 border-l-primary" : ""} pl-4 pr-3 py-3`}
                   >
                     <div className="flex items-center">
                       <div
@@ -164,7 +174,7 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
                     {isOpen && (
                       <FontAwesomeIcon
                         icon={faChevronDown}
-                        className={`text-[0.75rem] text-gray-400 transition-transform duration-300 ${
+                        className={`text-[0.75rem] text-gray-400 transition-transform duration-300 shrink-0 ${
                           isExpanded ? "rotate-180" : ""
                         }`}
                       />
