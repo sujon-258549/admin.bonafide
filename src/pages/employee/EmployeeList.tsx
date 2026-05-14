@@ -171,17 +171,10 @@ const EmployeeList = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (name: string, record: Employee) => (
-        <div className="flex items-center gap-3">
-          <img
-            src={`https://i.pravatar.cc/150?u=${record.email}`}
-            alt={name}
-            className="w-8 h-8 rounded-full object-cover shrink-0"
-          />
-          <span className="font-semibold text-gray-800 text-sm whitespace-nowrap">
-            {name}
-          </span>
-        </div>
+      render: (name: string) => (
+        <span className="font-semibold text-gray-800 text-sm whitespace-nowrap">
+          {name}
+        </span>
       ),
     },
     {
