@@ -7,7 +7,6 @@ import {
   faRotateRight,
   faPenToSquare,
   faTrash,
-  faSearch,
   faFilter,
   faSort,
 } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +14,7 @@ import CustomButton from "../../Components/ui/Button";
 import DataTable from "../../Components/Tables/DataTable";
 import CustomSwitch from "../../Components/ui/Switch";
 import CategoryModal from "../../Components/modal/category/CategoryModal";
+import { searchableColumn } from "../../Components/Tables/searchableColumn";
 
 const CategoryList = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -126,12 +126,7 @@ const CategoryList = () => {
       ),
     },
     {
-      title: (
-        <div className="flex items-center justify-between">
-          <span>CATEGORY NAME</span>
-          <FontAwesomeIcon icon={faSearch} className="text-gray-300 text-xs" />
-        </div>
-      ),
+      ...searchableColumn("CATEGORY NAME", "name"),
       dataIndex: "name",
       key: "name",
       render: (text: string) => (
