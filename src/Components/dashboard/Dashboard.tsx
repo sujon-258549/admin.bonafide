@@ -1,10 +1,4 @@
 import { useState } from "react";
-import {
-  faDollarSign,
-  faShoppingCart,
-  faBoxOpen,
-  faUsers,
-} from "@fortawesome/free-solid-svg-icons";
 
 import RevenueChart from "../charts/dashboard/RevenueChart";
 import OrdersChart from "../charts/dashboard/OrdersChart";
@@ -43,9 +37,6 @@ const Dashboard = () => {
           12,48,500
         </>
       ),
-      icon: faDollarSign,
-      trend: "12.5%",
-      trendUp: true,
       accentColor: colors.primary,
       meta: (
         <>
@@ -57,27 +48,18 @@ const Dashboard = () => {
     {
       label: "Total Orders",
       value: "8,420",
-      icon: faShoppingCart,
-      trend: "8.2%",
-      trendUp: true,
       accentColor: colors.chart4 || "#10B981",
       meta: "1,248 new this week",
     },
     {
       label: "Total Products",
       value: "1,245",
-      icon: faBoxOpen,
-      trend: "4.1%",
-      trendUp: true,
       accentColor: colors.chart3 || "#1F2937",
       meta: "1,108 active · 137 draft",
     },
     {
       label: "Total Customers",
       value: "5,840",
-      icon: faUsers,
-      trend: "5.4%",
-      trendUp: true,
       accentColor: colors.chart5 || "#6366F1",
       meta: "+128 new this week",
     },

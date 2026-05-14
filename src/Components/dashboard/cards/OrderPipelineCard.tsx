@@ -11,7 +11,7 @@ const OrderPipelineCard = () => {
   const total = stages.reduce((sum, s) => sum + s.count, 0);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-200 p-6 h-full flex flex-col">
+    <div className="bg-white rounded-lg border border-gray-200 p-6 h-full flex flex-col">
       <div className="flex items-start justify-between mb-6">
         <div>
           <h3 className="text-base font-bold text-gray-900">Order Pipeline</h3>

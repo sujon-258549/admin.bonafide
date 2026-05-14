@@ -26,21 +26,24 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
   const menuItems = [
     { name: "Dashboard", icon: faTableColumns, path: "/" },
     {
-      name: "Product Management",
-      icon: faBoxOpen,
-      path: "/products",
-      submenu: [
-        { name: "All Products", path: "/products/list" },
-      ],
-    },
-    {
       name: "Category Management",
       icon: faLayerGroup,
       path: "/categories",
-      submenu: [
-        { name: "Categories", path: "/categories/list" },
-      ],
+      submenu: [{ name: "Categories", path: "/categories/list" }],
     },
+    {
+      name: "Brand Management",
+      icon: faTag,
+      path: "/brands",
+      submenu: [{ name: "All Brands", path: "/brands/list" }],
+    },
+    {
+      name: "Product Management",
+      icon: faBoxOpen,
+      path: "/products",
+      submenu: [{ name: "All Products", path: "/products/list" }],
+    },
+
     {
       name: "Content Management",
       icon: faFileLines,
@@ -50,21 +53,12 @@ const Sidebar = ({ isOpen, setIsOpen }: SidebarProps) => {
         { name: "Banners", path: "/content/banners" },
       ],
     },
-    {
-      name: "Brand Management",
-      icon: faTag,
-      path: "/brands",
-      submenu: [
-        { name: "All Brands", path: "/brands/list" },
-      ],
-    },
+
     {
       name: "Blog Management",
       icon: faNewspaper,
       path: "/blogs",
-      submenu: [
-        { name: "All Blogs", path: "/blogs/list" },
-      ],
+      submenu: [{ name: "All Blogs", path: "/blogs/list" }],
     },
   ];
 
